@@ -1,0 +1,250 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		36109E481B31EF020098FA56 /* Jokes R Us.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36109E461B31EF020098FA56 /* Jokes R Us.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		360F160C1AACFE0900414641 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		360F160E1AACFE0A00414641 /* Toying */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Toying; sourceTree = BUILT_PRODUCTS_DIR; };
+		36109E461B31EF020098FA56 /* Jokes R Us.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Jokes R Us.cpp"; sourceTree = "<group>"; };
+		36109E471B31EF020098FA56 /* Jokes R Us.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Jokes R Us.h"; sourceTree = "<group>"; };
+		36D292F31ABAA88F00200B34 /* Structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Structures.h; path = ../Structures.h; sourceTree = "<group>"; };
+		36D3CFBB1AB4C3ED005B7351 /* Cases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cases.h; path = ../Cases.h; sourceTree = "<group>"; };
+		36D8CAE01ABE5BC8006E631B /* Beginning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beginning.h; sourceTree = "<group>"; };
+		36E0F78B1B334332005B928E /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		360F160B1AACFE0900414641 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		360F16051AACFE0800414641 = {
+			isa = PBXGroup;
+			children = (
+				360F16101AACFE0A00414641 /* Toying */,
+				360F160F1AACFE0A00414641 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		360F160F1AACFE0A00414641 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				360F160E1AACFE0A00414641 /* Toying */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		360F16101AACFE0A00414641 /* Toying */ = {
+			isa = PBXGroup;
+			children = (
+				36109E461B31EF020098FA56 /* Jokes R Us.cpp */,
+				36E0F78B1B334332005B928E /* Test.h */,
+				36109E471B31EF020098FA56 /* Jokes R Us.h */,
+				36D8CAE01ABE5BC8006E631B /* Beginning.h */,
+				36D3CFBB1AB4C3ED005B7351 /* Cases.h */,
+				36D292F31ABAA88F00200B34 /* Structures.h */,
+			);
+			path = Toying;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		360F160D1AACFE0900414641 /* Toying */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 360F16151AACFE0B00414641 /* Build configuration list for PBXNativeTarget "Toying" */;
+			buildPhases = (
+				360F160A1AACFE0900414641 /* Sources */,
+				360F160B1AACFE0900414641 /* Frameworks */,
+				360F160C1AACFE0900414641 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Toying;
+			productName = Toying;
+			productReference = 360F160E1AACFE0A00414641 /* Toying */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		360F16061AACFE0900414641 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = YaddaYaddaYadda;
+				TargetAttributes = {
+					360F160D1AACFE0900414641 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 360F16091AACFE0900414641 /* Build configuration list for PBXProject "Toying" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 360F16051AACFE0800414641;
+			productRefGroup = 360F160F1AACFE0A00414641 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				360F160D1AACFE0900414641 /* Toying */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		360F160A1AACFE0900414641 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36109E481B31EF020098FA56 /* Jokes R Us.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		360F16131AACFE0B00414641 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		360F16141AACFE0B00414641 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		360F16161AACFE0B00414641 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		360F16171AACFE0B00414641 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		360F16091AACFE0900414641 /* Build configuration list for PBXProject "Toying" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				360F16131AACFE0B00414641 /* Debug */,
+				360F16141AACFE0B00414641 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		360F16151AACFE0B00414641 /* Build configuration list for PBXNativeTarget "Toying" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				360F16161AACFE0B00414641 /* Debug */,
+				360F16171AACFE0B00414641 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 360F16061AACFE0900414641 /* Project object */;
+}
