@@ -1,0 +1,356 @@
+#include <windows.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <strsafe.h>
+
+typedef struct tagBuffer{
+  void* Memory;
+  int Height;
+  int Width;
+  BITMAPINFO Info;
+} Buffer;
+
+typedef uint8_t uint8;
+typedef uint16_t uint16;
+typedef uint32_t uint32;
+
+static Buffer myBuffer = {};
+static bool Running = true;
+
+static void
+ReAllocBuffer(Buffer *buffer, RECT *windowRec){
+
+  if(buffer->Memory) VirtualFree(buffer->Memory, 0, MEM_RELEASE);
+
+  buffer->Height = windowRec->bottom - windowRec->top;
+  buffer->Width = windowRec->right - windowRec->left;
+
+  buffer->Info.bmiHeader.biSize = sizeof(buffer->Info.bmiHeader);
+  buffer->Info.bmiHeader.biWidth = myBuffer.Width;
+  buffer->Info.bmiHeader.biHeight = -myBuffer.Height;
+  buffer->Info.bmiHeader.biPlanes = 1;
+  buffer->Info.bmiHeader.biBitCount = 32;
+  buffer->Info.bmiHeader.biCompression = BI_RGB;
+  buffer->Info.bmiHeader.biSizeImage = 0;
+  //No actual resolution if writing HBitMap by hand
+  buffer->Info.bmiHeader.biXPelsPerMeter = 0;
+  buffer->Info.bmiHeader.biYPelsPerMeter = 0;
+  buffer->Info.bmiHeader.biClrUsed = 0;
+  buffer->Info.bmiHeader.biClrImportant = 0;
+
+  /*
+    typedef struct tagBITMAPINFOHEADER {
+    DWORD biSize;
+    LONG  biWidth;
+    LONG  biHeight;
+    WORD  biPlanes;
+    WORD  biBitCount;
+    DWORD biCompression;
+    DWORD biSizeImage;
+    LONG  biXPelsPerMeter;
+    LONG  biYPelsPerMeter;
+    DWORD biClrUsed;
+    DWORD biClrImportant;
+    } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
+  */
+
+  buffer->Memory = VirtualAlloc(0, buffer->Width*buffer->Height*4, MEM_COMMIT, PAGE_READWRITE);
+
+  /*
+    LPVOID WINAPI VirtualAlloc(
+    _In_opt_ LPVOID lpAddress,
+    _In_     SIZE_T dwSize,
+    _In_     DWORD  flAllocationType,
+    _In_     DWORD  flProtect
+    );
+   */
+
+}
+
+
+static void
+workOnBuffer(Buffer *buffer, int xOffset, int yOffset){
+
+  uint8* Row = (uint8 *)buffer->Memory;
+  //scaling through large pointer buffer
+  // with smaller pointer
+  //FOR ROWS
+
+  for(
+      int y = 0;
+      y < buffer->Height;
+      y++
+      ){
+
+    //!!
+    uint32* Pixel = (uint32 *) Row;
+
+
+      for(
+	  int x = 0;
+	  x < buffer->Width;
+	  x++
+      ){
+
+	         uint8 Blue = ((x/7) + xOffset);
+	         uint8 Red = ((y/7) + yOffset);
+
+	         *Pixel = ((Red << 16) | Blue);
+	         Pixel++;
+
+      }
+        Row += (buffer->Width*4);
+  }
+
+}
+
+static void
+copyABuffer(Buffer *buffer, HDC DeviceC, RECT *rec){
+
+  int Width = rec->right - rec->left;
+  int Height = rec->bottom - rec->top;
+
+  StretchDIBits(
+		DeviceC,
+		0,
+		0,
+		Width,
+		Height,
+		0,
+		0,
+		buffer->Width,
+		buffer->Height,
+		buffer->Memory,
+		&buffer->Info,
+		DIB_RGB_COLORS,
+		SRCCOPY
+		);
+
+}
+
+LRESULT CALLBACK
+WindowFunc(
+	   HWND Window,
+	   UINT Message,
+	   WPARAM  wParam,
+	   LPARAM  lParam){
+
+  LRESULT result = 0; //becomes 0 during an exception
+
+  switch(Message){
+
+  case WM_SIZE:
+    {
+      RECT WNDRect;
+      GetClientRect(Window, &WNDRect);
+      ReAllocBuffer(&myBuffer, &WNDRect);
+    } break;
+
+  case WM_CLOSE:
+    {
+      Running = false;
+    } break;
+
+  case WM_DESTROY:
+    {
+      Running = false;
+    } break;
+
+  case WM_MOVE:
+    {} break;
+
+  case WM_KEYDOWN:
+    {} break;
+
+  case WM_SYSKEYDOWN: //ALT or when window not in focus
+    {} break;
+
+  default: //needs to be a case in order for the window to be created
+    {
+
+      /*
+	LRESULT WINAPI DefWindowProc(
+	_In_ HWND   hWnd,
+	_In_ UINT   Msg,
+	_In_ WPARAM wParam,
+	_In_ LPARAM lParam
+	);
+       */
+      result = DefWindowProc(Window, Message, wParam, lParam);
+    }break;
+
+  }
+
+  return (result);
+}
+
+int CALLBACK
+WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+    PSTR lpCmdLine, int nCmdShow)
+{
+  /*
+    HWND WINAPI CreateWindowEx(
+    _In_     DWORD     dwExStyle,
+    _In_opt_ LPCTSTR   lpClassName,
+    _In_opt_ LPCTSTR   lpWindowName,
+    _In_     DWORD     dwStyle,
+    _In_     int       x,
+    _In_     int       y,
+    _In_     int       nWidth,
+    _In_     int       nHeight,
+    _In_opt_ HWND      hWndParent,
+    _In_opt_ HMENU     hMenu,
+    _In_opt_ HINSTANCE hInstance,
+    _In_opt_ LPVOID    lpParam
+    );
+   */
+
+
+  WNDCLASS WindowClass = {};
+  WindowClass.style = CS_HREDRAW|CS_VREDRAW;
+  WindowClass.lpfnWndProc = WindowFunc;
+  /*
+    LRESULT WINAPI CallWindowProc(
+    _In_ WNDPROC lpPrevWndFunc,
+    _In_ HWND    hWnd,
+    _In_ UINT    Msg,
+    _In_ WPARAM  wParam,
+    _In_ LPARAM  lParam
+    );
+  */
+  //WindowClass.cbClsExtra;
+  //WindowClass.cbWndExtra;
+  WindowClass.hInstance = hInstance;
+  //WindowClass.hIcon;
+  //WindowClass.hCursor;
+  //WindowClass.hbrBackground;
+  //WindowClass.lpszMenuName;
+  WindowClass.lpszClassName = "WINAPIHandMadeClass";
+
+
+  //Keybinding for functions, like ls for vim
+
+  if(RegisterClass(&WindowClass)){ //if(!) return 0 is cleaner
+    HWND Window = CreateWindowEx(
+				 0,
+				 WindowClass.lpszClassName,
+				 "FireWorks Display",
+				 WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+				 CW_USEDEFAULT,
+				 CW_USEDEFAULT,
+				 CW_USEDEFAULT,
+				 CW_USEDEFAULT,
+				 0,
+				 0,
+				 hInstance,
+				 0
+				 );
+
+
+    if(Window){
+
+      float GiveX = 0;
+      float GiveY = 450;
+      Running = true;
+
+      /*
+      void* FireworksList;
+      FireworksList = VirtualAlloc();
+      int maxSize = 25;
+      Fireworks* fw = (Fireworks *)FireworksList;
+      //fw++;
+      SYSTEMTIME Time;
+      GetSystemTime(&Time);
+      WORD PrevTime = Time.wSecond;
+      TimerLimit = 5;
+      */
+
+      /*
+	BOOL WINAPI PeekMessage(
+	_Out_    LPMSG lpMsg,
+	_In_opt_ HWND  hWnd,
+	_In_     UINT  wMsgFilterMin,
+	_In_     UINT  wMsgFilterMax,
+	_In_     UINT  wRemoveMsg
+	);
+       */
+
+      while(Running){
+	   MSG Message;
+
+	            while(PeekMessage(&Message, 0, 0, 0, PM_REMOVE)){
+
+	               if(Message.message == WM_QUIT) Running = false;
+
+	               TranslateMessage(&Message);
+	               DispatchMessage(&Message);
+                }
+
+
+	//calling updating functions
+	  HDC DeviceC = GetDC(Window);
+	  RECT WindowRect;
+	  GetClientRect(Window, &WindowRect);
+
+	  workOnBuffer(&myBuffer, GiveX, GiveY); //random x and y later
+	  copyABuffer(&myBuffer, DeviceC, &WindowRect);
+	  ReleaseDC(Window, DeviceC);
+
+	  GiveX += .2f;
+      GiveY += .005f;
+
+      }
+
+
+    }
+    else{
+
+    }
+
+
+  }
+  else{
+
+  }
+
+
+  return 0;
+}
+/*
+typedef struct Fireworks{
+
+  HWND WindowHandle;
+  uint32* BufferHandle;
+  uint8* colors;
+  uint16 speed;
+  uint16 InitX;
+  uint16 InitY;
+
+  Fireworks(HWND Window, uint32[] *Buffer, ){
+
+
+
+  };
+
+}Fire, *FireTag;
+
+typedef struct PseudoNumGen{
+
+  uint16 seed;
+  uint16 lastNum;
+  uint8* checkCases;
+
+  checkCases[0] = 0;
+  checkCases[1] = (1 << 7);
+  checkCases[2] = 255;
+
+  PseudoNumGen(uint16 s){ seed = s; lastNum = 0;};
+  PseudoNumGen(uint16 s, uint16 ls){ seed = s; lastNum = ls;};
+
+  void GenerateNum();
+
+  void CheckError();
+
+};
+
+*/
