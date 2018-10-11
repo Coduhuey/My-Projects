@@ -1,0 +1,262 @@
+public class LinkedInformation<T> extends Items{
+
+	//Use these instance variables
+	int nelems;
+	T[] list;
+	
+	int currIndex;
+
+	BufferedReader[] inputs;
+	String[] filenames;
+	//
+
+	/**
+	*/
+	LinkedInformation(){
+		currIndex = 0;	//but can ask for
+		nelems = 0;
+	}
+
+	/**
+	*/
+	LinkedInformation(int length){
+		list = new Object[length];
+		LinkedInformation
+	}
+
+	/**
+	*/
+	LinkedInformation(String[] files){
+		filenames = files;
+		LinkedInformation(filenames.length);
+	}
+
+
+	/**
+	*/
+	public void goThroughAllChecksWithAllNodes(){
+		int results[][] = new int[nelems][nelems];
+
+		for(int i = 0; i < nelems; i++){
+			for(int j = 0; j < nelems; j++){
+				if(i == j) continue;
+				checkTwoRInfos(list[i], list[j]);
+			}
+		}
+
+		for(int i = 0; i < nelems-1; i++){
+			for(int j = 0; j < nelems-1; j++){
+				System.out.print(" | " + result[i][j]);
+			}
+			System.out.println(" | ");
+		}
+	}
+
+	/**
+	*/
+	public int checkTwoRInfos(Nugget nug1, Nugget nug2){
+		int points = 0;
+		if(nug1.rootCheck(nug2)) points += 25;
+
+		if(nug1.preFixCheck(nug2)) points += 10;			//compile to see what needs to be IMPLEMENTED
+		if(nug1.sufFixCheck(nug2)) points += 10;
+
+		if(points >= 20) nug1.setRelated(nug2);
+
+		return points;
+	}
+
+	public void getInputs(String fromMain){
+		inputs[i] = new BufferedReader(
+
+		filenames 		//READ INTO BUFFEREDREADER
+				//AND FILE IO
+
+			list
+
+	}
+
+
+
+
+	protected class Nugget{
+
+		T given;
+		Nugget closest; 	//subset of related nuggets
+
+		String[] keywords;		//ordered by importance
+		String[] assumptions;		//matching index with keywords array
+
+		char[] alphabeticalCheck = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+					'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+		/**
+		*/
+		Nugget(T element){
+			given = element;
+			closest = null;
+		}
+
+		/**
+		*/
+		Nugget(T element, Nugget r){
+			given = element;
+			closest = r;
+		}
+
+
+		/**
+		*/
+		void obtainPhrases(String[] file){
+			for(int i = 0; i < file.length; i++){
+				String acceptableWord;
+				int vowelC = 0;
+				int consC = 0;
+
+				for(int j = 0; i < file[i].length(); j++){
+					if(j == 0){
+
+					}
+					else if(containVowels(file[i].charAt(j)){
+						consC = 0;
+						vowelC++;
+						if(vowelC > 1) break;
+					}
+					else{
+						vowelC = 0;
+						consC++;
+						if(consC >= 3) break;	
+					}
+
+					acceptableWord.append(file[i].charAt(j));
+				}
+
+				checkingAssumptions(acceptableWord);
+				keywords[i] = acceptableWord;
+			}
+		}
+
+		/**
+		*/
+		void checkingAssumptions(String word){
+			int aIndex = 0;
+			for(int i = 0; i < word.length(); i++){
+				int currCommonality = 0;
+				
+				for(int j = 0; j < word.length(); j++){
+					if(word.charAt(i) == word.charAt(j)) currCommonality++;
+				}
+
+				if(currCommonality >= 3){
+					assumptions[aIndex++] = "Pattern recognized, reoccurences of a common letter";
+					break;
+				}
+			}
+		}
+
+		/**
+		*/
+		int checkingAssumptions(String[] values){
+			int assumingValue = 0;
+			alphabeticalCheck = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+					'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+			for(int i = 0; i < values.length; i++){
+				for(int j = 0; j < alphabeticalCheck.length; j++){
+					if(alphabeticalCheck[j] == values[i].charAt(0)) alphabeticalCheck[j] = ' ';
+				}
+			}
+
+			for(int i = 0; i < alphabeticalCheck.length; i++){
+				if(alphabeticalCheck[i] == ' ') assumingValue++;
+				else break;
+			}
+
+				//what more assumptions can you check besides ALPHABETICAL ORDER
+			return assumingValue;
+		}
+
+		/**
+		*/
+		void containVowels(char c){
+			if(c == 'a' || c == 'e' || c == 'i' || c== 'o' || c== 'u' || c == 'y') return true;
+	
+			return false;
+		}
+
+		/**
+		*/
+		public String getKeyWords(){
+			return keywords;
+		}
+	
+		/**
+		*/
+		public void setRelated(Nugget r){
+			closest = r;
+		}
+
+		/**
+		*/
+		public boolean preFixCheck(Nugget other){
+			for(int i = 0; i < 5; i++){
+				String preFix1 = keywords[i].substring(0, 2);
+				String preFix2 - other.getKeyWords()[i].substring(0, 2);
+
+				if(preFix1.equals(preFix2)) return true;
+			}
+		
+			return false;
+		}
+		
+
+		/**
+		*/
+		public boolean sufFixCheck(Nugget other){
+			for(int i = 0; i < 5; i++){
+				String sufFix1 = keywords[i].substring(keywords[i].length-4, keywords[i].length-1);
+				String sufFix2 - other.getKeyWords()[i].substring(other.getKeyWords()[i].length-3, other.getKeyWords()[i].length-1);
+
+				if(sufFix1.equals(preFix2)) return true;
+			}
+		
+			return false;
+		}
+
+		/**
+		*/
+		public boolean rootCheck(Nugget other){
+			for(int i = 0; i < 5; i++){
+				String root1 = keywords[i].substring((keywords[i].length/2)-2, (keywords[i].length/2)+3);
+				String root2 - other.getKeyWords()[i].substring((other.getKeyWords()[i].length/2)-2, (other.getKeyWords()[i].length/2)+3);
+
+				if(root1.equals(root2)) return true;
+
+				int c = 0;
+				for(int j = 0; j < root1.length(); j++){
+					for(int k = 0; k < root1.length(); k++){
+						if(root1.charAt(j) == root2.charAt(k)){
+							c++;
+							break;
+						}
+						else{
+							c== 0;
+						}
+						
+						if(c >= 3) return true;
+					}
+				} 
+			}
+		
+			return false;
+		}
+	}
+
+	/**
+	*/
+	public int compareData(Nugget comparedNug){
+		if(comparedNug.getKeyWords().length >
+			list[curIndex].getKeyWords().length) return 1;
+		else if(comparedNug.getKeyWords().length <
+			list[curIndex].getKeyWords().length) return -1;
+		else return 0;
+	}
