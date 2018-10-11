@@ -1,0 +1,79 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class SwingTextField implements ActionListener{
+
+	JTextField jtf;
+	JLabel jlabcontents;
+
+	SwingTextField(){
+
+	JFrame jfrm = new JFrame("Using the TextField");
+
+	jfrm.setSize(240, 120);
+
+	jfrm.setLayout(new FlowLayout());
+
+	jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+	jtf = new JTextField(10);
+
+	jtf.setActionCommand("MyTF");
+
+	JButton jbtn = new JButton("Reverse");
+
+	jtf.addActionListener(this);
+
+	jbtn.addActionListener(this);
+
+	JLabel jlabprompt = new JLabel("Enter some text");
+
+	jlabcontents = new JLabel("");
+
+	
+	jfrm.add(jtf);
+	jfrm.add(jbtn);
+	jfrm.add(jlabprompt);
+	jfrm.add(jlabcontents);
+
+	jfrm.setVisible(true);
+
+	}
+
+
+	public void actionPerformed(ActionEvent ae){
+
+		String orgStr;
+		String revStr;
+
+		if(ae.getActionCommand.equals("Reverse")){
+
+			orgStr = jtf.getText();
+			revStr = "";
+
+			for(int i = orgStr.length()-1; i >= 0; i--)     //in reverse but IMPORTANT
+				revStr += orgStr.charAt(i);
+			
+			jtf.setText(revStr);
+		}
+		else{
+
+			jlabcontents.setText("You Pressed Enter, The Phrase That Was Entered Was " + jtf.getText());
+		}
+
+
+	
+
+	public static void main(String args[]){
+
+		SwingUtilites.invokeLater(new Runnable() {
+	
+			public void run(){
+				new SwingTextField();
+			}
+		});
+
+	}
+}

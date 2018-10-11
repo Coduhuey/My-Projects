@@ -1,0 +1,37 @@
+public class ObjectFighter implement Runnable{
+  Object type;
+  static Image[] centerPlayers = new Image[];
+  int x;
+  int y;
+  Rotate rotate;
+  Scale scale;
+  int numBarrier;
+
+  ObjectFighter(ObjectGUI game, Object[] input, ){
+    for(int i = 0; i < input.length; i++){
+      centerPlayers[i] = getCenter(input[i]);
+     }
+    recursiveConstruct(
+  }
+
+  private void recursiveConstruct(
+
+  private void getCenter<T>(Object type){
+    giveCenter<type.getType()>(type);
+  }
+
+  private boolean contains(ObjectFighter o){
+    if(x+size >= o.x && x-size <= o.x){
+	if(y+size >= o.y && y-size <= o.y){
+	  return true;
+	}
+    }
+    return false;
+  }
+
+  public void attack(){
+    for(int i=0; i<centerPlayers.length; i++){
+      if(contains(centerPlayers[i])){
+	removeBarrier();
+      }
+
