@@ -1,4 +1,4 @@
-### From a DSC mini project
+### From a DSC 170 mini project
 
 ##### Used code from an arcgis api.
 ##### Manually detected palm trees and houses then fed that into a type of Single Shot detector R-CNN to train a model.
