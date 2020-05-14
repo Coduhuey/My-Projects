@@ -1,2 +1,0 @@
-Use set to name variables in batch 
-    Ex: set /a filecount=5 
