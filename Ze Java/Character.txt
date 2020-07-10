@@ -1,0 +1,110 @@
+import java.io.*;
+import javafx.application.*;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*
+import javafx.scene.effect.*;
+import javafx.scene.transform.*;
+import javafx.scene.canvas.*;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
+import javafx.scene.color.*;
+import javafx.collection.*;
+import javafx.geometry.*;
+import javafx.event.*;
+
+class Character implements Runnable{
+	int charNum;
+	int Health;
+	Image[] visuals;
+	static Image currImg;
+	Color charColor;
+	Thread Thanim;
+
+	Boolean walking;
+
+	Character(int cn, int h, Image[] v, Color cc, BorderPane bp, GraphicsContext g){
+		charNum = cn;
+		visuals = v;
+		charColor = cc;
+		Thanim = this;
+		Thanim.start();
+		currImg = visual[0];
+
+		bp.getChildren().add(new ImageView(currImg));
+
+		walking = false;
+	}
+
+	public void run(){
+		while(!stop){
+			switch(currImg){
+			   case visual[0]:
+			     currImg = visual[1];
+			     Thread.sleep(200);
+			   case visual[1]:
+			     if(walking) currImg = visual[2];
+			     else currImg = visual[0];
+
+			     Thread.sleep(500);
+			   case visual[2]:
+			      currImg = visual[0];
+			      Thread.sleep(300);
+			}
+		}
+	}
+}
+	
+
+class Enemy extends Character{
+	int Damage;
+	GraphicsContext gc;
+	
+	Boolean attack;
+
+	Enemy(int cn, int h, Image[] v, Color cc, BorderPane bp, GraphicsContext g, int d){
+		Damage = d;
+		gc = g;
+		super(cn, v, cc, bp, gc);
+		attack = false;
+		gc.setColor(Color.RED);
+	}
+
+	void Attack(Character a){
+		a.Health -= Damage;
+		currImg = visual[2];
+		gc.fillRect(0, 0, 900, 900);
+		Thread.sleep(250);
+		gc.clearRect(0, 0, 900, 900);
+		currImg = visual[0];
+	}
+
+	public void run(){
+		if(attack) Attack(Character[int n])
+		Character.run();
+	}
+				
+}
+
+class Dialog<T> extends Character{
+	T dialog;
+	GraphicsContext gc;
+
+	Dialog(int cn, int h, Image[] v, Color cc, BorderPane bp, GraphicsContext g, T d){
+		dialog = d;
+		gc = g;
+		super(cn, h, v, cc, bp, gc);
+	}
+
+	void Dialog(){
+		gc.strokeRect(250, 500, 300, 400);
+		gc.setText(new Text(35));
+		gc.fillText(dialog, 400, 600);
+	}
+
+	public void run(){
+		if(bp.getScene() == WorldScene) Dialog();
+		Character.run();
+	}
+}

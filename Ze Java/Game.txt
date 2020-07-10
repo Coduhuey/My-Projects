@@ -1,0 +1,179 @@
+import java.io.*;
+import javafx.application.*;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*
+import javafx.scene.effect.*;
+import javafx.scene.transform.*;
+import javafx.scene.canvas.*;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
+import javafx.scene.color.*;
+import javafx.collection.*;
+import javafx.geometry.*;
+import javafx.event.*;
+
+interface S{
+	void Scene();
+}	
+
+class Data{
+	Character[] players;
+	int index;
+
+	Data(Character[] p){
+		players = p;
+		index = p.length;
+	}
+
+	Character getPlayers(int n){
+		return players[n];
+	}
+		
+
+	Character[] getPlayers(){
+		return players;
+	}
+
+	void addPlayer(Character p){
+		Character[] g = new Character[players.length+1];
+		players = g;
+		players[index++] = p;
+	}
+}
+
+
+public class Window extends Application{
+	
+	BorderPane bp;
+	
+	Data d = new Data(new Character[] ({(1, 500, {new Image("Movement.png"), new Image("Stagnant.png"), bp}, Color.BLUE), (2, 200, new Image("
+				new Enemy[] ({(			new Dialog[]({(
+	S scenes[] = {Scenes::TitleScene, Scenes::FightScene, Scenes::WorldScene};
+
+	Boolean On;
+	String[] messages = {"
+	String Title;
+	
+	public static void main(String args[]){
+		launch(args);
+		Title = messsages[Random.math()*messages.length];
+		On = true;
+	}
+
+	class Scenes{
+		void FightScene(){
+			myStage.setScene(Interactable);
+			bp.getChildren().add(CombatMenuBar);
+			
+			double angle = 0;
+
+			Rotate rotate = new Rotate(angle, rdbtn1.getWidth()/2, rdbtn1.getWidth()/2);
+			Scale scale = new Scale(
+			Glow glo = new Glow(
+			InnerShadow ins = new InnerShadow(
+			
+
+		
+			Interactable.setOnMousePressed(new EventHandler<MouseEvent>(){
+				public void handle(MouseEvent me){
+					angle += 30.0;
+					rotate.setAngle(angle);
+					
+
+	
+
+			Interactable.setOnMouseDragged(new EventHandler<MouseEvent>(){
+				public void handle(MouseEvent me){
+				
+
+
+	
+			for(int i; i < d.players.length; i++){
+				ImageView(d.players[i].currImg);
+			}
+		
+			Label response = new Label("Dialogue: 
+			Thread.sleep(500);
+
+			while(){
+			
+				attack(Random(players));	
+
+			}
+	
+			bp.getChildren.remove(CombatMenuBar);
+			myStage.setScene(startScene);
+
+		}
+	
+	void TitleScene(){
+		myStage.setScene(Interactable);
+
+		Interactable.setOnMousePressed(new EventHandler<MouseEvent>(){
+			public void handle(MouseEvent me){
+				
+
+		myStage.setScene(startScene);
+	}
+
+	void WorldScene(){
+		myStage.setScene(Interactable);
+
+		Interactable.setOnMousePressed(new EventHandler<MouseEvent>(){
+			public void handle(MouseEvent me){
+				
+
+		myStage.setScene(startScene);
+	}
+
+
+	public void start(Stage myStage){
+		myStage.setTitle(Title);
+		bp = new BorderPane(10, 10);
+		bp.setAlignment(Pos.CENTER);
+		Scene startScene = new Scene(bp, 750, 900);
+		myStage.setScene(startScene);
+
+		Scene Interactable = new Scene(bp, 750, 900);
+		Canvas cn = new Canvas();
+		GraphicsContext gc = cn.getGraphicsContext2D();	
+		
+		RadioButton rdbtn1
+		RadioButton rdbtn2
+		ListView
+		TreeView
+
+		MenuBar CombatMenuBar = new MenuBar();
+		Menu Attacks = new Menu(new MenuItem("Punch"), new MenuItem("Kick"), new MenuItem("Squirm"));
+		Menu Tactics = new Menu(
+
+		CombatMenuBar.getMenus().addAll(Attacks, Tactics);
+
+		bp.getChildren.addAll(
+		myStage.show();
+
+		Interactable.setOnMouseExited(new EventHandler<MouseEvent>(){
+			public void handle(MouseEvent me){
+				On = false;
+			}
+		}
+				
+		Thread main = new Thread();
+
+		while(On){
+			scenes[0];
+			
+
+
+
+		}
+			
+		
+	
+
+	time = System.currentTimeMillis()/1000;
+	timer = (System.currentTimeMillis()/1000)-time;
+	}
+}

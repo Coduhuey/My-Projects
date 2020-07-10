@@ -1,0 +1,51 @@
+interface Types<T>{
+	T Takeover();
+}
+
+class Methods<T>{
+
+	T var;
+
+	Methods(T ob){
+		var = ob;
+	}
+
+
+	T Frontlines(Methods<?> mob){
+		if(var.isInt()) return var + mob;
+		if(var.isString() && mob.isString()) return var.indexOf(mob);
+		else{
+			System.out.println("Unuseable");
+	}
+
+
+	T Phase2(Methods<? extends Number> num){
+		for(num; num <= 2; num/2){
+			int n = var % num;
+			if(n != 0) break;
+		}
+		
+		return n != 0;
+	}
+}
+
+
+public class Runner implements Runnable{
+	
+	Thread th;
+	Boolean stop;
+	Types t1, t2;
+	String str;
+	int ji;
+	
+	Runner(){
+		th = new Thread(this);
+		stop = false;
+		t1 = Methods :: Frontlines;
+		t2 = Methods :: Phase2;
+		th.start();
+	}
+
+
+	static float StringToNumber(String s){
+		
