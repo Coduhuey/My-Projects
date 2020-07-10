@@ -1,0 +1,14 @@
+---
+:id: 18435263
+:submitters:
+- :name: Daniel Alemu
+  :email: dalemu@ucsd.edu
+- :name: Luis Manuel Diaz
+  :email: lmd003@ucsd.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2019-05-25 02:16:35.318664000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2019-05-24 19:16:35.318664000 Z
+:status: processed
+:score: 10.0
